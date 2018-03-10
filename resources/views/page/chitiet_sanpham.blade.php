@@ -134,16 +134,18 @@
 				</div>
 				<div class="col-sm-3 aside">
 					<div class="widget">
-						<h3 class="widget-title">Best Sellers</h3>
-						<div class="widget-body">
-							<div class="beta-sales beta-lists">
+						{{-- <h3 class="widget-title">Sản phẩm bán chạy</h3>
+						<div class="widget-body"> --}}
+							{{-- <div class="beta-sales beta-lists">
+								@foreach($best_seller as $best)
 								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>
+									<a class="pull-left" href="{{route('chitietsanpham',$best->id)}}"><img src="source/image/product/{{$best->image}}" alt=""></a>
 									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
+										{{$best->name}}
+										<span class="beta-sales-price">{{$best->unit_price}}</span>
 									</div>
 								</div>
+								@endforeach
 								<div class="media beta-sales-item">
 									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/2.png" alt=""></a>
 									<div class="media-body">
@@ -165,42 +167,24 @@
 										<span class="beta-sales-price">$34.55</span>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 						</div>
 					</div> <!-- best sellers widget -->
 					<div class="widget">
-						<h3 class="widget-title">New Products</h3>
+						<h3 class="widget-title">Sản phẩm mới</h3>
 						<div class="widget-body">
 							<div class="beta-sales beta-lists">
+								@foreach($new_prod as $new)
 								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>
+									<a class="pull-left" href="{{route('chitietsanpham',$new->id)}}"><img src="source/image/product/{{$new->image}}" alt=""></a>
 									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
+										{{$new->name}}
+										<br>
+										<span class="beta-sales-price">@if($new->promotion_price == 0){{number_format($new->unit_price)}} @else {{number_format($new->promotion_price)}} @endif đ</span>
 									</div>
 								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/2.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/3.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-								<div class="media beta-sales-item">
-									<a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/4.png" alt=""></a>
-									<div class="media-body">
-										Sample Woman Top
-										<span class="beta-sales-price">$34.55</span>
-									</div>
-								</div>
-							</div>
+								@endforeach
+								
 						</div>
 					</div> <!-- best sellers widget -->
 				</div>

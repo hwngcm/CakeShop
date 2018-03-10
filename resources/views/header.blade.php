@@ -3,15 +3,20 @@
 			<div class="container">
 				<div class="pull-left auto-width-left">
 					<ul class="top-menu menu-beta l-inline">
-						<li><a href=""><i class="fa fa-home"></i> 90-92 Lê Thị Riêng, Bến Thành, Quận 1</a></li>
-						<li><a href=""><i class="fa fa-phone"></i> 0163 296 7751</a></li>
+						<li><a href=""><i class="fa fa-home"></i> Km10 Nguyễn Trãi, Hà Đông, Hà Nội</a></li>
+						<li><a href=""><i class="fa fa-phone"></i> 0123 456 7890</a></li>
 					</ul>
 				</div>
 				<div class="pull-right auto-width-right">
 					<ul class="top-details menu-beta l-inline">
-						<li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li>
-						<li><a href="#">Đăng kí</a></li>
-						<li><a href="#">Đăng nhập</a></li>
+						{{-- <li><a href="#"><i class="fa fa-user"></i>Tài khoản</a></li> --}}
+						@if(Auth::check())
+						<li><a href="">Chào bạn {{Auth::user()->full_name}}</a></li>
+						<li><a href="{{route('logout')}}">Đăng xuất</a></li>
+						@else
+						<li><a href="{{route('signin')}}">Đăng kí</a></li>
+						<li><a href="{{route('login')}}">Đăng nhập</a></li>
+						@endif
 					</ul>
 				</div>
 				<div class="clearfix"></div>
@@ -20,13 +25,13 @@
 		<div class="header-body">
 			<div class="container beta-relative">
 				<div class="pull-left">
-					<a href="index.html" id="logo"><img src="source/assets/dest/images/logo-cake.png" width="200px" alt=""></a>
+					<a href="{{route('trang-chu')}}" id="logo"><img src="source/assets/dest/images/logo-cake.png" width="200px" alt=""></a>
 				</div>
 				<div class="pull-right beta-components space-left ov">
 					<div class="space10">&nbsp;</div>
 					<div class="beta-comp">
-						<form role="search" method="get" id="searchform" action="/">
-					        <input type="text" value="" name="s" id="s" placeholder="Nhập từ khóa..." />
+						<form role="search" method="get" id="searchform" action="{{route('search')}}">
+					        <input type="text" value="" name="key" id="s" placeholder="Nhập từ khóa..." />
 					        <button class="fa fa-search" type="submit" id="searchsubmit"></button>
 						</form>
 					</div>
@@ -75,7 +80,7 @@
 				<nav class="main-menu">
 					<ul class="l-inline ov">
 						<li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
-						<li><a href="#">Loại sản phẩm</a>
+						<li><a href="{{route('loaisanpham',1)}}">Loại sản phẩm</a>
 							<ul class="sub-menu">
 								@foreach($loai_sp as $loai)
 								<li><a href="{{route('loaisanpham',$loai->id)}}">{{$loai->name}}</a></li>
